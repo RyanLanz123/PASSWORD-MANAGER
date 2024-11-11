@@ -21,7 +21,8 @@ def view():
             for line in f.readlines():
                 data = line.rstrip()
                 user, passw = data.split("|")
-                print("User:", user, "| Password:", str(fer.decrypt(passw.encode())) + "\n")
+                print("User:", user, "| Password:", 
+                      fer.decrypt(passw.encode()))
     except FileNotFoundError:
         print("No passwords saved yet.")
 
@@ -30,7 +31,7 @@ def add():
     pwd = input("Password: ")
 
     with open('password.txt', 'a') as f:
-        f.write(name + "|" + str(fer.encrypt(pwd.encode())) + "\n")
+        f.write(name + "|" + fer.encrypt(pwd.encode()).decode())
 
 while True:
     mode = input("Would you like to add a new password or view existing passwords (view, add), or press q to quit? ").lower()
